@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nero Automotive CRM",
-  description: "Intelligent workshop management platform.",
+  title: "Nero Taller",
+  description: "Plataforma inteligente de gestion para talleres mecanicos.",
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="es" className="h-full antialiased">
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

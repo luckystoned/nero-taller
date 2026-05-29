@@ -3,8 +3,8 @@ import { PlaceholderPage } from "@/components/placeholder-page";
 export default function CustomersPage() {
   return (
     <PlaceholderPage
-      title="Customers"
-      description="Placeholder for individual customer management."
+      title="Clientes"
+      description="Espacio reservado para la gestion de clientes individuales."
     />
   );
 }

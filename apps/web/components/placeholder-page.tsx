@@ -20,9 +20,9 @@ export function PlaceholderPage({ title, description }: PlaceholderPageProps) {
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground">
-          This route is reserved for a future MVP module. No business logic,
-          domain model, database access, or authentication flow is implemented
-          yet.
+          Esta ruta queda reservada para un modulo futuro del MVP. Todavia no
+          implementa logica de negocio, modelo de dominio, acceso a base de
+          datos ni flujo de autenticacion.
         </p>
       </CardContent>
     </Card>

@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/card";
 
 const placeholderMetrics = [
-  "Work Orders",
-  "Vehicle History",
-  "Quotes",
-  "Approvals",
+  "Ordenes de trabajo",
+  "Historial vehicular",
+  "Presupuestos",
+  "Aprobaciones",
 ];
 
 export default function DashboardPage() {
@@ -19,16 +19,16 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-4">
       <Card>
         <CardHeader>
-          <Badge variant="secondary">Protected placeholder</Badge>
+          <Badge variant="secondary">Espacio reservado protegido</Badge>
           <CardTitle>Dashboard</CardTitle>
           <CardDescription>
-            Foundation route for the internal workshop workspace.
+            Ruta base para el espacio interno del taller.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
-            This page is intentionally static until real access control,
-            database access, and domain services are introduced.
+            Esta pagina es intencionalmente estatica hasta incorporar control de
+            acceso real, base de datos y servicios de dominio.
           </p>
         </CardContent>
       </Card>
@@ -38,7 +38,7 @@ export default function DashboardPage() {
           <Card key={label} size="sm">
             <CardHeader>
               <CardTitle>{label}</CardTitle>
-              <CardDescription>Pending implementation</CardDescription>
+              <CardDescription>Implementacion pendiente</CardDescription>
             </CardHeader>
           </Card>
         ))}

@@ -19,15 +19,15 @@ import { cn } from "@/lib/utils";
 
 const navigationItems = [
   { href: "/dashboard", label: "Dashboard", icon: Gauge },
-  { href: "/customers", label: "Customers", icon: Users },
-  { href: "/companies", label: "Companies", icon: Building2 },
-  { href: "/vehicles", label: "Vehicles", icon: Car },
-  { href: "/work-orders", label: "Work Orders", icon: Wrench },
-  { href: "/quotes", label: "Quotes", icon: FileText },
-  { href: "/approvals", label: "Approvals", icon: ClipboardCheck },
-  { href: "/parts", label: "Parts", icon: Package },
-  { href: "/suppliers", label: "Suppliers", icon: Truck },
-  { href: "/ai-assistant", label: "AI Assistant", icon: Bot },
+  { href: "/customers", label: "Clientes", icon: Users },
+  { href: "/companies", label: "Empresas", icon: Building2 },
+  { href: "/vehicles", label: "Vehiculos", icon: Car },
+  { href: "/work-orders", label: "Ordenes de trabajo", icon: Wrench },
+  { href: "/quotes", label: "Presupuestos", icon: FileText },
+  { href: "/approvals", label: "Aprobaciones", icon: ClipboardCheck },
+  { href: "/parts", label: "Repuestos", icon: Package },
+  { href: "/suppliers", label: "Proveedores", icon: Truck },
+  { href: "/ai-assistant", label: "Asistente IA", icon: Bot },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -38,7 +38,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <Link href="/dashboard" className="flex flex-col">
             <span className="text-base font-semibold">Nero Taller</span>
             <span className="text-xs text-muted-foreground">
-              Automotive CRM
+              CRM automotriz
             </span>
           </Link>
         </div>
@@ -64,10 +64,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </nav>
         <div className="p-4">
           <div className="rounded-lg border bg-background p-3">
-            <Badge variant="secondary">Foundation</Badge>
-            <p className="mt-2 text-sm font-medium">Protected app shell</p>
+            <Badge variant="secondary">Fundacion</Badge>
+            <p className="mt-2 text-sm font-medium">Base protegida de la app</p>
             <p className="mt-1 text-xs text-muted-foreground">
-              Auth integration will be added in a later phase.
+              La autenticacion real se agregara en una fase posterior.
             </p>
           </div>
         </div>
@@ -77,9 +77,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <header className="sticky top-0 z-10 border-b bg-background/95">
           <div className="flex min-h-16 flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-6">
             <div>
-              <p className="text-sm font-medium">Workshop operations</p>
+              <p className="text-sm font-medium">Operacion del taller</p>
               <p className="text-xs text-muted-foreground">
-                Placeholder navigation for the MVP modules.
+                Navegacion de espacios reservados para los modulos del MVP.
               </p>
             </div>
             <nav className="flex gap-2 overflow-x-auto md:hidden">

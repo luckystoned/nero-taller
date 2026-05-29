@@ -60,6 +60,28 @@ If there is any conflict between code and documentation, follow the documentatio
 
 ---
 
+## Supabase
+
+Before creating or modifying database schemas:
+
+1. Use Supabase MCP.
+2. Inspect existing schema.
+3. Verify migrations status.
+4. Verify environment configuration.
+5. Never assume database state.
+
+Database is the source of truth.
+
+---
+
+## Language Rules
+
+- The default language for the application UI is Spanish.
+- All visible product text, navigation labels, placeholders, metadata, empty states, validation messages, and user-facing copy must be written in Spanish unless explicitly requested otherwise.
+- Keep technical identifiers, file names, route names, code symbols, and framework conventions in English when that better matches the codebase and tooling.
+
+---
+
 ## AI Assistant Rules
 
 - Operational workshop history lives in PostgreSQL.

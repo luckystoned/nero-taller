@@ -59,6 +59,12 @@ Treat these files as the source of truth.
 - Maintain strong typing.
 - Prefer small and focused modules.
 
+## Language Rules
+
+- The default language for the application UI is Spanish.
+- Use Spanish for all visible product copy, navigation, placeholders, metadata, empty states, validation messages, and user-facing text unless the user explicitly asks for another language.
+- Keep technical identifiers, file names, route names, code symbols, and framework conventions in English when appropriate.
+
 ## AI Assistant Rules
 
 - Workshop operational data lives in PostgreSQL.
