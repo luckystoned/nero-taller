@@ -2,6 +2,8 @@
 .next
 .turbo
 .vercel
+.pnpm-store
+apps/web/generated
 build
 dist
 docs

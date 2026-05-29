@@ -7,6 +7,9 @@
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
     "lint": "pnpm --filter web lint",
+    "prisma": "pnpm --filter web prisma",
+    "prisma:generate": "pnpm --filter web prisma:generate",
+    "prisma:validate": "pnpm --filter web prisma:validate",
     "typecheck": "pnpm --filter web typecheck",
     "format": "prettier --check .",
     "format:write": "prettier --write ."

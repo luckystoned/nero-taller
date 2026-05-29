@@ -5,6 +5,7 @@ build
 dist
 .turbo
 .vercel
+.pnpm-store
 .env
 .env.*
 !.env.example
