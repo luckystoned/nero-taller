@@ -23,3 +23,20 @@ model Customer {
   @@index([documentId])
   @@map("customers")
 }
+
+model Company {
+  id               String   @id @default(uuid()) @db.Uuid
+  name             String
+  email            String?
+  phone            String?
+  taxId            String?  @map("tax_id")
+  requiresApproval Boolean  @default(false) @map("requires_approval")
+  notes            String?
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@index([email])
+  @@index([phone])
+  @@index([taxId])
+  @@map("companies")
+}

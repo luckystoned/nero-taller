@@ -46,3 +46,8 @@ export { Prisma }
  * 
  */
 export type Customer = Prisma.CustomerModel
+/**
+ * Model Company
+ * 
+ */
+export type Company = Prisma.CompanyModel
