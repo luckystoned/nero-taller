@@ -26,3 +26,23 @@ export const WorkOrderStatus = {
 } as const
 
 export type WorkOrderStatus = (typeof WorkOrderStatus)[keyof typeof WorkOrderStatus]
+
+
+export const QuoteStatus = {
+  DRAFT: 'DRAFT',
+  SENT: 'SENT',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type QuoteStatus = (typeof QuoteStatus)[keyof typeof QuoteStatus]
+
+
+export const QuoteItemType = {
+  LABOR: 'LABOR',
+  PART: 'PART',
+  OTHER: 'OTHER'
+} as const
+
+export type QuoteItemType = (typeof QuoteItemType)[keyof typeof QuoteItemType]

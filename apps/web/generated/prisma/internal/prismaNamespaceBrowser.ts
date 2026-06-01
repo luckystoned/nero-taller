@@ -55,7 +55,9 @@ export const ModelName = {
   Company: 'Company',
   Vehicle: 'Vehicle',
   WorkOrder: 'WorkOrder',
-  WorkOrderStatusHistory: 'WorkOrderStatusHistory'
+  WorkOrderStatusHistory: 'WorkOrderStatusHistory',
+  Quote: 'Quote',
+  QuoteItem: 'QuoteItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -144,6 +146,35 @@ export const WorkOrderStatusHistoryScalarFieldEnum = {
 } as const
 
 export type WorkOrderStatusHistoryScalarFieldEnum = (typeof WorkOrderStatusHistoryScalarFieldEnum)[keyof typeof WorkOrderStatusHistoryScalarFieldEnum]
+
+
+export const QuoteScalarFieldEnum = {
+  id: 'id',
+  workOrderId: 'workOrderId',
+  status: 'status',
+  subtotal: 'subtotal',
+  tax: 'tax',
+  total: 'total',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuoteScalarFieldEnum = (typeof QuoteScalarFieldEnum)[keyof typeof QuoteScalarFieldEnum]
+
+
+export const QuoteItemScalarFieldEnum = {
+  id: 'id',
+  quoteId: 'quoteId',
+  description: 'description',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  total: 'total',
+  type: 'type',
+  createdAt: 'createdAt'
+} as const
+
+export type QuoteItemScalarFieldEnum = (typeof QuoteItemScalarFieldEnum)[keyof typeof QuoteItemScalarFieldEnum]
 
 
 export const SortOrder = {

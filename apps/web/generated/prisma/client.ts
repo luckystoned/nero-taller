@@ -66,3 +66,13 @@ export type WorkOrder = Prisma.WorkOrderModel
  * 
  */
 export type WorkOrderStatusHistory = Prisma.WorkOrderStatusHistoryModel
+/**
+ * Model Quote
+ * 
+ */
+export type Quote = Prisma.QuoteModel
+/**
+ * Model QuoteItem
+ * 
+ */
+export type QuoteItem = Prisma.QuoteItemModel
