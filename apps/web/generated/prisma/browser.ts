@@ -27,3 +27,8 @@ export type Customer = Prisma.CustomerModel
  * 
  */
 export type Company = Prisma.CompanyModel
+/**
+ * Model Vehicle
+ * 
+ */
+export type Vehicle = Prisma.VehicleModel
