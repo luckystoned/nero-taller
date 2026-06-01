@@ -87,6 +87,13 @@ For every feature:
 
 Never start with UI.
 
+## E2E/UI Testing Login Credentials
+
+Read from .env file.
+
+- E2E_EMAIL=
+- E2E_PASSWORD=
+
 ## Code Generation Guidelines
 
 - Generate the minimum required code.
