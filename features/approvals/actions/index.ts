@@ -4,12 +4,13 @@ import { revalidatePath } from "next/cache";
 import type { ZodError } from "zod";
 
 import { createApprovalSchema, respondApprovalSchema } from "../schemas";
+import { serializeApproval } from "../serializers";
 import {
   approveApproval,
   createApproval,
   rejectApproval,
 } from "../services";
-import type { Approval } from "../types";
+import type { ApprovalDTO } from "../types";
 
 type ApprovalActionError = {
   formErrors: string[];
@@ -19,7 +20,7 @@ type ApprovalActionError = {
 type ApprovalActionResult =
   | {
       success: true;
-      approval: Approval;
+      approval: ApprovalDTO;
     }
   | {
       success: false;
@@ -55,8 +56,9 @@ export async function createApprovalAction(
   try {
     const approval = await createApproval(parsed.data);
     revalidatePath("/approvals");
+    revalidatePath(`/quotes/${approval.quoteId}`);
 
-    return { success: true, approval };
+    return { success: true, approval: serializeApproval(approval) };
   } catch (error) {
     return {
       success: false,
@@ -84,8 +86,9 @@ export async function approveApprovalAction(
   try {
     const approval = await approveApproval(parsed.data);
     revalidatePath("/approvals");
+    revalidatePath(`/approvals/${approval.id}`);
 
-    return { success: true, approval };
+    return { success: true, approval: serializeApproval(approval) };
   } catch (error) {
     return {
       success: false,
@@ -113,8 +116,9 @@ export async function rejectApprovalAction(
   try {
     const approval = await rejectApproval(parsed.data);
     revalidatePath("/approvals");
+    revalidatePath(`/approvals/${approval.id}`);
 
-    return { success: true, approval };
+    return { success: true, approval: serializeApproval(approval) };
   } catch (error) {
     return {
       success: false,

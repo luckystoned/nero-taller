@@ -36,6 +36,18 @@ export async function createApproval(input: CreateApprovalInput) {
 }
 
 export async function approveApproval(input: RespondApprovalInput) {
+  const currentApproval = await prisma.approval.findUnique({
+    where: { id: input.id },
+  });
+
+  if (!currentApproval) {
+    throw new Error("La aprobación indicada no existe.");
+  }
+
+  if (currentApproval.status !== ApprovalStatus.PENDING) {
+    throw new Error("La aprobación ya fue respondida.");
+  }
+
   return prisma.approval.update({
     where: { id: input.id },
     data: {
@@ -47,6 +59,18 @@ export async function approveApproval(input: RespondApprovalInput) {
 }
 
 export async function rejectApproval(input: RespondApprovalInput) {
+  const currentApproval = await prisma.approval.findUnique({
+    where: { id: input.id },
+  });
+
+  if (!currentApproval) {
+    throw new Error("La aprobación indicada no existe.");
+  }
+
+  if (currentApproval.status !== ApprovalStatus.PENDING) {
+    throw new Error("La aprobación ya fue respondida.");
+  }
+
   return prisma.approval.update({
     where: { id: input.id },
     data: {

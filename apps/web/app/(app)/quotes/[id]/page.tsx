@@ -17,6 +17,8 @@ import { cn } from "@/lib/utils";
 import { getQuoteById } from "../../../../../../features/quotes/queries";
 import { quoteIdSchema } from "../../../../../../features/quotes/schemas";
 
+import { RequestApprovalButton } from "../_components/request-approval-button";
+
 type QuoteDetailPageProps = {
   params: Promise<{
     id: string;
@@ -33,6 +35,12 @@ const statusLabels: Record<QuoteWithDetails["status"], string> = {
   REJECTED: "Rechazado",
   CANCELLED: "Cancelado",
 };
+
+const approvalStatusLabels = {
+  PENDING: "Pendiente",
+  APPROVED: "Aprobada",
+  REJECTED: "Rechazada",
+} as const;
 
 const itemTypeLabels: Record<QuoteItem["type"], string> = {
   LABOR: "Mano de obra",
@@ -151,6 +159,32 @@ export default async function QuoteDetailPage({ params }: QuoteDetailPageProps) 
               </dd>
             </div>
           </dl>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Aprobación</CardTitle>
+          <CardDescription>
+            Solicitud interna asociada a este presupuesto.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {quote.approval ? (
+            <div className="flex flex-col items-start gap-3">
+              <Badge variant="secondary">
+                {approvalStatusLabels[quote.approval.status]}
+              </Badge>
+              <Link
+                href={`/approvals/${quote.approval.id}`}
+                className={cn(buttonVariants({ variant: "outline" }))}
+              >
+                Ver aprobación
+              </Link>
+            </div>
+          ) : (
+            <RequestApprovalButton quoteId={quote.id} />
+          )}
         </CardContent>
       </Card>
 

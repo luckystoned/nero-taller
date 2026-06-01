@@ -23,6 +23,7 @@ const quoteInclude = {
       },
     },
   },
+  approval: true,
 } as const;
 
 export async function getQuoteById(id: string) {

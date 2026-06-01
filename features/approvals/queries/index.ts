@@ -5,33 +5,56 @@ import {
   approvalListQuerySchema,
   type ApprovalListQueryInput,
 } from "../schemas";
+import { serializeApprovalWithQuote } from "../serializers";
 
 const approvalInclude = {
-  quote: true,
+  quote: {
+    include: {
+      items: {
+        orderBy: {
+          createdAt: "asc",
+        },
+      },
+      workOrder: {
+        include: {
+          vehicle: {
+            include: {
+              customer: true,
+              company: true,
+            },
+          },
+        },
+      },
+    },
+  },
 } as const;
 
 export async function getApprovalById(id: string) {
   const approvalId = approvalIdSchema.parse(id);
 
-  return prisma.approval.findUnique({
+  const approval = await prisma.approval.findUnique({
     where: { id: approvalId },
     include: approvalInclude,
   });
+
+  return approval ? serializeApprovalWithQuote(approval) : null;
 }
 
 export async function getApprovalByQuoteId(quoteId: string) {
   const query = approvalListQuerySchema.parse({ quoteId });
 
-  return prisma.approval.findUnique({
+  const approval = await prisma.approval.findUnique({
     where: { quoteId: query?.quoteId },
     include: approvalInclude,
   });
+
+  return approval ? serializeApprovalWithQuote(approval) : null;
 }
 
 export async function listApprovals(input?: ApprovalListQueryInput) {
   const query = approvalListQuerySchema.parse(input);
 
-  return prisma.approval.findMany({
+  const approvals = await prisma.approval.findMany({
     include: approvalInclude,
     where: {
       quoteId: query?.quoteId,
@@ -41,6 +64,8 @@ export async function listApprovals(input?: ApprovalListQueryInput) {
     skip: query?.skip,
     take: query?.take ?? 50,
   });
+
+  return approvals.map(serializeApprovalWithQuote);
 }
 
 export async function countApprovals(input?: ApprovalListQueryInput) {
