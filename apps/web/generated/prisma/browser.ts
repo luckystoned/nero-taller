@@ -32,3 +32,13 @@ export type Company = Prisma.CompanyModel
  * 
  */
 export type Vehicle = Prisma.VehicleModel
+/**
+ * Model WorkOrder
+ * 
+ */
+export type WorkOrder = Prisma.WorkOrderModel
+/**
+ * Model WorkOrderStatusHistory
+ * 
+ */
+export type WorkOrderStatusHistory = Prisma.WorkOrderStatusHistoryModel

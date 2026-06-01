@@ -9,7 +9,20 @@
 * 🟢 You can import this file directly.
 */
 
+export const WorkOrderStatus = {
+  DRAFT: 'DRAFT',
+  RECEIVED: 'RECEIVED',
+  DIAGNOSIS_IN_PROGRESS: 'DIAGNOSIS_IN_PROGRESS',
+  QUOTE_PENDING: 'QUOTE_PENDING',
+  WAITING_CLIENT_APPROVAL: 'WAITING_CLIENT_APPROVAL',
+  WAITING_COMPANY_APPROVAL: 'WAITING_COMPANY_APPROVAL',
+  APPROVED: 'APPROVED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  WAITING_PARTS: 'WAITING_PARTS',
+  COMPLETED: 'COMPLETED',
+  READY_FOR_PICKUP: 'READY_FOR_PICKUP',
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type WorkOrderStatus = (typeof WorkOrderStatus)[keyof typeof WorkOrderStatus]

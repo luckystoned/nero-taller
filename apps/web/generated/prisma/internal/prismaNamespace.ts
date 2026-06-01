@@ -386,7 +386,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Customer: 'Customer',
   Company: 'Company',
-  Vehicle: 'Vehicle'
+  Vehicle: 'Vehicle',
+  WorkOrder: 'WorkOrder',
+  WorkOrderStatusHistory: 'WorkOrderStatusHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "company" | "vehicle"
+    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "workOrderStatusHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +630,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    WorkOrder: {
+      payload: Prisma.$WorkOrderPayload<ExtArgs>
+      fields: Prisma.WorkOrderFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WorkOrderFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WorkOrderFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        findFirst: {
+          args: Prisma.WorkOrderFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WorkOrderFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        findMany: {
+          args: Prisma.WorkOrderFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>[]
+        }
+        create: {
+          args: Prisma.WorkOrderCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        createMany: {
+          args: Prisma.WorkOrderCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WorkOrderCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>[]
+        }
+        delete: {
+          args: Prisma.WorkOrderDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        update: {
+          args: Prisma.WorkOrderUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        deleteMany: {
+          args: Prisma.WorkOrderDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WorkOrderUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WorkOrderUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>[]
+        }
+        upsert: {
+          args: Prisma.WorkOrderUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        aggregate: {
+          args: Prisma.WorkOrderAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWorkOrder>
+        }
+        groupBy: {
+          args: Prisma.WorkOrderGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WorkOrderCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderCountAggregateOutputType> | number
+        }
+      }
+    }
+    WorkOrderStatusHistory: {
+      payload: Prisma.$WorkOrderStatusHistoryPayload<ExtArgs>
+      fields: Prisma.WorkOrderStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WorkOrderStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WorkOrderStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.WorkOrderStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WorkOrderStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.WorkOrderStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.WorkOrderStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.WorkOrderStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WorkOrderStatusHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.WorkOrderStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.WorkOrderStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.WorkOrderStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WorkOrderStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WorkOrderStatusHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.WorkOrderStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.WorkOrderStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWorkOrderStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.WorkOrderStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WorkOrderStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderStatusHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -714,6 +864,31 @@ export const VehicleScalarFieldEnum = {
 export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
 
 
+export const WorkOrderScalarFieldEnum = {
+  id: 'id',
+  vehicleId: 'vehicleId',
+  status: 'status',
+  intakeReason: 'intakeReason',
+  symptoms: 'symptoms',
+  mileage: 'mileage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkOrderScalarFieldEnum = (typeof WorkOrderScalarFieldEnum)[keyof typeof WorkOrderScalarFieldEnum]
+
+
+export const WorkOrderStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  workOrderId: 'workOrderId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  createdAt: 'createdAt'
+} as const
+
+export type WorkOrderStatusHistoryScalarFieldEnum = (typeof WorkOrderStatusHistoryScalarFieldEnum)[keyof typeof WorkOrderStatusHistoryScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -790,6 +965,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkOrderStatus'
+ */
+export type EnumWorkOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkOrderStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkOrderStatus[]'
+ */
+export type ListEnumWorkOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkOrderStatus[]'>
     
 
 
@@ -919,6 +1108,8 @@ export type GlobalOmitConfig = {
   customer?: Prisma.CustomerOmit
   company?: Prisma.CompanyOmit
   vehicle?: Prisma.VehicleOmit
+  workOrder?: Prisma.WorkOrderOmit
+  workOrderStatusHistory?: Prisma.WorkOrderStatusHistoryOmit
 }
 
 /* Types for Logging */
