@@ -390,7 +390,8 @@ export const ModelName = {
   WorkOrder: 'WorkOrder',
   WorkOrderStatusHistory: 'WorkOrderStatusHistory',
   Quote: 'Quote',
-  QuoteItem: 'QuoteItem'
+  QuoteItem: 'QuoteItem',
+  Approval: 'Approval'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "workOrderStatusHistory" | "quote" | "quoteItem"
+    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "workOrderStatusHistory" | "quote" | "quoteItem" | "approval"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -928,6 +929,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Approval: {
+      payload: Prisma.$ApprovalPayload<ExtArgs>
+      fields: Prisma.ApprovalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ApprovalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ApprovalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>
+        }
+        findFirst: {
+          args: Prisma.ApprovalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ApprovalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>
+        }
+        findMany: {
+          args: Prisma.ApprovalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>[]
+        }
+        create: {
+          args: Prisma.ApprovalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>
+        }
+        createMany: {
+          args: Prisma.ApprovalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ApprovalCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>[]
+        }
+        delete: {
+          args: Prisma.ApprovalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>
+        }
+        update: {
+          args: Prisma.ApprovalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>
+        }
+        deleteMany: {
+          args: Prisma.ApprovalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ApprovalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ApprovalUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>[]
+        }
+        upsert: {
+          args: Prisma.ApprovalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ApprovalPayload>
+        }
+        aggregate: {
+          args: Prisma.ApprovalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateApproval>
+        }
+        groupBy: {
+          args: Prisma.ApprovalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ApprovalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ApprovalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ApprovalCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1068,6 +1143,20 @@ export const QuoteItemScalarFieldEnum = {
 export type QuoteItemScalarFieldEnum = (typeof QuoteItemScalarFieldEnum)[keyof typeof QuoteItemScalarFieldEnum]
 
 
+export const ApprovalScalarFieldEnum = {
+  id: 'id',
+  quoteId: 'quoteId',
+  status: 'status',
+  requestedAt: 'requestedAt',
+  respondedAt: 'respondedAt',
+  responseNotes: 'responseNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ApprovalScalarFieldEnum = (typeof ApprovalScalarFieldEnum)[keyof typeof ApprovalScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1204,6 +1293,20 @@ export type ListEnumQuoteItemTypeFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'ApprovalStatus'
+ */
+export type EnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ApprovalStatus[]'
+ */
+export type ListEnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1333,6 +1436,7 @@ export type GlobalOmitConfig = {
   workOrderStatusHistory?: Prisma.WorkOrderStatusHistoryOmit
   quote?: Prisma.QuoteOmit
   quoteItem?: Prisma.QuoteItemOmit
+  approval?: Prisma.ApprovalOmit
 }
 
 /* Types for Logging */

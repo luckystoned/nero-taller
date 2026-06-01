@@ -46,3 +46,12 @@ export const QuoteItemType = {
 } as const
 
 export type QuoteItemType = (typeof QuoteItemType)[keyof typeof QuoteItemType]
+
+
+export const ApprovalStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ApprovalStatus = (typeof ApprovalStatus)[keyof typeof ApprovalStatus]

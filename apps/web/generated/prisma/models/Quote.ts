@@ -258,6 +258,7 @@ export type QuoteWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Quote"> | Date | string
   workOrder?: Prisma.XOR<Prisma.WorkOrderScalarRelationFilter, Prisma.WorkOrderWhereInput>
   items?: Prisma.QuoteItemListRelationFilter
+  approval?: Prisma.XOR<Prisma.ApprovalNullableScalarRelationFilter, Prisma.ApprovalWhereInput> | null
 }
 
 export type QuoteOrderByWithRelationInput = {
@@ -272,6 +273,7 @@ export type QuoteOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   workOrder?: Prisma.WorkOrderOrderByWithRelationInput
   items?: Prisma.QuoteItemOrderByRelationAggregateInput
+  approval?: Prisma.ApprovalOrderByWithRelationInput
 }
 
 export type QuoteWhereUniqueInput = Prisma.AtLeast<{
@@ -289,6 +291,7 @@ export type QuoteWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Quote"> | Date | string
   workOrder?: Prisma.XOR<Prisma.WorkOrderScalarRelationFilter, Prisma.WorkOrderWhereInput>
   items?: Prisma.QuoteItemListRelationFilter
+  approval?: Prisma.XOR<Prisma.ApprovalNullableScalarRelationFilter, Prisma.ApprovalWhereInput> | null
 }, "id">
 
 export type QuoteOrderByWithAggregationInput = {
@@ -334,6 +337,7 @@ export type QuoteCreateInput = {
   updatedAt?: Date | string
   workOrder: Prisma.WorkOrderCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+  approval?: Prisma.ApprovalCreateNestedOneWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateInput = {
@@ -347,6 +351,7 @@ export type QuoteUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+  approval?: Prisma.ApprovalUncheckedCreateNestedOneWithoutQuoteInput
 }
 
 export type QuoteUpdateInput = {
@@ -360,6 +365,7 @@ export type QuoteUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workOrder?: Prisma.WorkOrderUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+  approval?: Prisma.ApprovalUpdateOneWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateInput = {
@@ -373,6 +379,7 @@ export type QuoteUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
+  approval?: Prisma.ApprovalUncheckedUpdateOneWithoutQuoteNestedInput
 }
 
 export type QuoteCreateManyInput = {
@@ -541,6 +548,20 @@ export type QuoteUpdateOneRequiredWithoutItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuoteUpdateToOneWithWhereWithoutItemsInput, Prisma.QuoteUpdateWithoutItemsInput>, Prisma.QuoteUncheckedUpdateWithoutItemsInput>
 }
 
+export type QuoteCreateNestedOneWithoutApprovalInput = {
+  create?: Prisma.XOR<Prisma.QuoteCreateWithoutApprovalInput, Prisma.QuoteUncheckedCreateWithoutApprovalInput>
+  connectOrCreate?: Prisma.QuoteCreateOrConnectWithoutApprovalInput
+  connect?: Prisma.QuoteWhereUniqueInput
+}
+
+export type QuoteUpdateOneRequiredWithoutApprovalNestedInput = {
+  create?: Prisma.XOR<Prisma.QuoteCreateWithoutApprovalInput, Prisma.QuoteUncheckedCreateWithoutApprovalInput>
+  connectOrCreate?: Prisma.QuoteCreateOrConnectWithoutApprovalInput
+  upsert?: Prisma.QuoteUpsertWithoutApprovalInput
+  connect?: Prisma.QuoteWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuoteUpdateToOneWithWhereWithoutApprovalInput, Prisma.QuoteUpdateWithoutApprovalInput>, Prisma.QuoteUncheckedUpdateWithoutApprovalInput>
+}
+
 export type QuoteCreateWithoutWorkOrderInput = {
   id?: string
   status: $Enums.QuoteStatus
@@ -551,6 +572,7 @@ export type QuoteCreateWithoutWorkOrderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+  approval?: Prisma.ApprovalCreateNestedOneWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutWorkOrderInput = {
@@ -563,6 +585,7 @@ export type QuoteUncheckedCreateWithoutWorkOrderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+  approval?: Prisma.ApprovalUncheckedCreateNestedOneWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutWorkOrderInput = {
@@ -616,6 +639,7 @@ export type QuoteCreateWithoutItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   workOrder: Prisma.WorkOrderCreateNestedOneWithoutQuotesInput
+  approval?: Prisma.ApprovalCreateNestedOneWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutItemsInput = {
@@ -628,6 +652,7 @@ export type QuoteUncheckedCreateWithoutItemsInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  approval?: Prisma.ApprovalUncheckedCreateNestedOneWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutItemsInput = {
@@ -656,6 +681,7 @@ export type QuoteUpdateWithoutItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workOrder?: Prisma.WorkOrderUpdateOneRequiredWithoutQuotesNestedInput
+  approval?: Prisma.ApprovalUpdateOneWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutItemsInput = {
@@ -668,6 +694,75 @@ export type QuoteUncheckedUpdateWithoutItemsInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  approval?: Prisma.ApprovalUncheckedUpdateOneWithoutQuoteNestedInput
+}
+
+export type QuoteCreateWithoutApprovalInput = {
+  id?: string
+  status: $Enums.QuoteStatus
+  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tax: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workOrder: Prisma.WorkOrderCreateNestedOneWithoutQuotesInput
+  items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+}
+
+export type QuoteUncheckedCreateWithoutApprovalInput = {
+  id?: string
+  workOrderId: string
+  status: $Enums.QuoteStatus
+  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tax: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+}
+
+export type QuoteCreateOrConnectWithoutApprovalInput = {
+  where: Prisma.QuoteWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuoteCreateWithoutApprovalInput, Prisma.QuoteUncheckedCreateWithoutApprovalInput>
+}
+
+export type QuoteUpsertWithoutApprovalInput = {
+  update: Prisma.XOR<Prisma.QuoteUpdateWithoutApprovalInput, Prisma.QuoteUncheckedUpdateWithoutApprovalInput>
+  create: Prisma.XOR<Prisma.QuoteCreateWithoutApprovalInput, Prisma.QuoteUncheckedCreateWithoutApprovalInput>
+  where?: Prisma.QuoteWhereInput
+}
+
+export type QuoteUpdateToOneWithWhereWithoutApprovalInput = {
+  where?: Prisma.QuoteWhereInput
+  data: Prisma.XOR<Prisma.QuoteUpdateWithoutApprovalInput, Prisma.QuoteUncheckedUpdateWithoutApprovalInput>
+}
+
+export type QuoteUpdateWithoutApprovalInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tax?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workOrder?: Prisma.WorkOrderUpdateOneRequiredWithoutQuotesNestedInput
+  items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+}
+
+export type QuoteUncheckedUpdateWithoutApprovalInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tax?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteCreateManyWorkOrderInput = {
@@ -691,6 +786,7 @@ export type QuoteUpdateWithoutWorkOrderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+  approval?: Prisma.ApprovalUpdateOneWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutWorkOrderInput = {
@@ -703,6 +799,7 @@ export type QuoteUncheckedUpdateWithoutWorkOrderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
+  approval?: Prisma.ApprovalUncheckedUpdateOneWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateManyWithoutWorkOrderInput = {
@@ -759,6 +856,7 @@ export type QuoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updatedAt?: boolean
   workOrder?: boolean | Prisma.WorkOrderDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Quote$itemsArgs<ExtArgs>
+  approval?: boolean | Prisma.Quote$approvalArgs<ExtArgs>
   _count?: boolean | Prisma.QuoteCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quote"]>
 
@@ -804,6 +902,7 @@ export type QuoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type QuoteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workOrder?: boolean | Prisma.WorkOrderDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Quote$itemsArgs<ExtArgs>
+  approval?: boolean | Prisma.Quote$approvalArgs<ExtArgs>
   _count?: boolean | Prisma.QuoteCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuoteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -818,6 +917,7 @@ export type $QuotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     workOrder: Prisma.$WorkOrderPayload<ExtArgs>
     items: Prisma.$QuoteItemPayload<ExtArgs>[]
+    approval: Prisma.$ApprovalPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1225,6 +1325,7 @@ export interface Prisma__QuoteClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   workOrder<T extends Prisma.WorkOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkOrderClient<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Quote$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quote$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuoteItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  approval<T extends Prisma.Quote$approvalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quote$approvalArgs<ExtArgs>>): Prisma.Prisma__ApprovalClient<runtime.Types.Result.GetResult<Prisma.$ApprovalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1685,6 +1786,25 @@ export type Quote$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.QuoteItemScalarFieldEnum | Prisma.QuoteItemScalarFieldEnum[]
+}
+
+/**
+ * Quote.approval
+ */
+export type Quote$approvalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Approval
+   */
+  select?: Prisma.ApprovalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Approval
+   */
+  omit?: Prisma.ApprovalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApprovalInclude<ExtArgs> | null
+  where?: Prisma.ApprovalWhereInput
 }
 
 /**

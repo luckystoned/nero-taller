@@ -138,6 +138,7 @@ model Quote {
   updatedAt   DateTime    @updatedAt @map("updated_at")
   workOrder   WorkOrder   @relation(fields: [workOrderId], references: [id], onDelete: Restrict)
   items       QuoteItem[]
+  approval    Approval?
 
   @@index([workOrderId])
   @@index([status])
@@ -158,4 +159,25 @@ model QuoteItem {
   @@index([quoteId])
   @@index([type])
   @@map("quote_items")
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Approval {
+  id            String         @id @default(uuid()) @db.Uuid
+  quoteId       String         @unique @map("quote_id") @db.Uuid
+  status        ApprovalStatus @default(PENDING)
+  requestedAt   DateTime       @default(now()) @map("requested_at")
+  respondedAt   DateTime?      @map("responded_at")
+  responseNotes String?        @map("response_notes")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  quote         Quote          @relation(fields: [quoteId], references: [id], onDelete: Restrict)
+
+  @@index([status])
+  @@map("approvals")
 }
