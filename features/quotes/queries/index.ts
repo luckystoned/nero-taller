@@ -5,6 +5,7 @@ import {
   quoteListQuerySchema,
   type QuoteListQueryInput,
 } from "../schemas";
+import { serializeQuoteWithItems } from "../serializers";
 
 const quoteInclude = {
   items: {
@@ -27,16 +28,18 @@ const quoteInclude = {
 export async function getQuoteById(id: string) {
   const quoteId = quoteIdSchema.parse(id);
 
-  return prisma.quote.findUnique({
+  const quote = await prisma.quote.findUnique({
     where: { id: quoteId },
     include: quoteInclude,
   });
+
+  return quote ? serializeQuoteWithItems(quote) : null;
 }
 
 export async function listQuotes(input?: QuoteListQueryInput) {
   const query = quoteListQuerySchema.parse(input);
 
-  return prisma.quote.findMany({
+  const quotes = await prisma.quote.findMany({
     include: quoteInclude,
     where: {
       workOrderId: query?.workOrderId,
@@ -46,6 +49,8 @@ export async function listQuotes(input?: QuoteListQueryInput) {
     skip: query?.skip,
     take: query?.take ?? 50,
   });
+
+  return quotes.map(serializeQuoteWithItems);
 }
 
 export async function countQuotes(input?: QuoteListQueryInput) {

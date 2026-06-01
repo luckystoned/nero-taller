@@ -8,8 +8,9 @@ import {
   deleteQuoteSchema,
   updateQuoteSchema,
 } from "../schemas";
+import { serializeQuote } from "../serializers";
 import { createQuote, deleteQuote, updateQuote } from "../services";
-import type { Quote } from "../types";
+import type { QuoteDTO } from "../types";
 
 type QuoteActionError = {
   formErrors: string[];
@@ -19,7 +20,7 @@ type QuoteActionError = {
 type QuoteActionResult =
   | {
       success: true;
-      quote: Quote;
+      quote: QuoteDTO;
     }
   | {
       success: false;
@@ -56,7 +57,7 @@ export async function createQuoteAction(
     const quote = await createQuote(parsed.data);
     revalidatePath("/quotes");
 
-    return { success: true, quote };
+    return { success: true, quote: serializeQuote(quote) };
   } catch (error) {
     return {
       success: false,
@@ -86,7 +87,7 @@ export async function updateQuoteAction(
     const quote = await updateQuote(parsed.data);
     revalidatePath("/quotes");
 
-    return { success: true, quote };
+    return { success: true, quote: serializeQuote(quote) };
   } catch (error) {
     return {
       success: false,
@@ -115,7 +116,7 @@ export async function deleteQuoteAction(
     const quote = await deleteQuote(parsed.data);
     revalidatePath("/quotes");
 
-    return { success: true, quote };
+    return { success: true, quote: serializeQuote(quote) };
   } catch (error) {
     return {
       success: false,

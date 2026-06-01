@@ -6,6 +6,11 @@ import type {
 } from "../../../apps/web/generated/prisma/client";
 
 import type {
+  SerializedQuote,
+  SerializedQuoteItem,
+} from "../serializers";
+
+import type {
   CreateQuoteInput,
   DeleteQuoteInput,
   QuoteItemTypeInput,
@@ -20,6 +25,8 @@ export type QuoteStatus = PrismaQuoteStatus;
 export type QuoteItemType = PrismaQuoteItemType;
 export type QuoteId = Quote["id"];
 export type QuoteItemId = QuoteItem["id"];
+export type QuoteDTO = SerializedQuote;
+export type QuoteItemDTO = SerializedQuoteItem;
 
 export type {
   CreateQuoteInput,
