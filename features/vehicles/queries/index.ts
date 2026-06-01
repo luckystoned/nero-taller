@@ -6,11 +6,17 @@ import {
   type VehicleListQueryInput,
 } from "../schemas";
 
+const vehicleOwnerInclude = {
+  customer: true,
+  company: true,
+} as const;
+
 export async function getVehicleById(id: string) {
   const vehicleId = vehicleIdSchema.parse(id);
 
   return prisma.vehicle.findUnique({
     where: { id: vehicleId },
+    include: vehicleOwnerInclude,
   });
 }
 
@@ -19,6 +25,7 @@ export async function listVehicles(input?: VehicleListQueryInput) {
   const search = query?.search?.trim();
 
   return prisma.vehicle.findMany({
+    include: vehicleOwnerInclude,
     where: {
       customerId: query?.customerId || undefined,
       companyId: query?.companyId || undefined,
