@@ -4,11 +4,13 @@ import { revalidatePath } from "next/cache";
 import type { ZodError } from "zod";
 
 import {
+  changeWorkOrderStatusSchema,
   createWorkOrderSchema,
   deleteWorkOrderSchema,
   updateWorkOrderSchema,
 } from "../schemas";
 import {
+  changeWorkOrderStatus,
   createWorkOrder,
   deleteWorkOrder,
   updateWorkOrder,
@@ -128,6 +130,37 @@ export async function deleteWorkOrderAction(
       message: formatServiceError(
         error,
         "No pudimos eliminar la orden de trabajo. Revisá los datos ingresados.",
+      ),
+    };
+  }
+}
+
+export async function changeWorkOrderStatusAction(
+  input: unknown,
+): Promise<WorkOrderActionResult> {
+  const parsed = changeWorkOrderStatusSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      message:
+        "No pudimos cambiar el estado de la orden. Revisá los datos ingresados.",
+      errors: formatValidationError(parsed.error),
+    };
+  }
+
+  try {
+    const workOrder = await changeWorkOrderStatus(parsed.data);
+    revalidatePath("/work-orders");
+    revalidatePath(`/work-orders/${workOrder.id}`);
+
+    return { success: true, workOrder };
+  } catch (error) {
+    return {
+      success: false,
+      message: formatServiceError(
+        error,
+        "No pudimos cambiar el estado de la orden. Revisá los datos ingresados.",
       ),
     };
   }

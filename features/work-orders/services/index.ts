@@ -2,6 +2,7 @@ import { WorkOrderStatus } from "../../../apps/web/generated/prisma/client";
 import { prisma } from "../../../apps/web/lib/prisma";
 
 import type {
+  ChangeWorkOrderStatusInput,
   CreateWorkOrderInput,
   DeleteWorkOrderInput,
   UpdateWorkOrderInput,
@@ -61,5 +62,38 @@ export async function updateWorkOrder(input: UpdateWorkOrderInput) {
 export async function deleteWorkOrder(input: DeleteWorkOrderInput) {
   return prisma.workOrder.delete({
     where: { id: input.id },
+  });
+}
+
+export async function changeWorkOrderStatus(input: ChangeWorkOrderStatusInput) {
+  return prisma.$transaction(async (transaction) => {
+    const currentWorkOrder = await transaction.workOrder.findUnique({
+      where: { id: input.id },
+    });
+
+    if (!currentWorkOrder) {
+      throw new Error("La orden de trabajo indicada no existe.");
+    }
+
+    if (currentWorkOrder.status === input.status) {
+      throw new Error("La orden de trabajo ya tiene ese estado.");
+    }
+
+    const updatedWorkOrder = await transaction.workOrder.update({
+      where: { id: input.id },
+      data: {
+        status: input.status,
+      },
+    });
+
+    await transaction.workOrderStatusHistory.create({
+      data: {
+        workOrderId: input.id,
+        fromStatus: currentWorkOrder.status,
+        toStatus: input.status,
+      },
+    });
+
+    return updatedWorkOrder;
   });
 }

@@ -17,6 +17,8 @@ import { cn } from "@/lib/utils";
 import { getWorkOrderById } from "../../../../../../features/work-orders/queries";
 import { workOrderIdSchema } from "../../../../../../features/work-orders/schemas";
 
+import { WorkOrderStatusForm } from "../_components/work-order-status-form";
+
 type WorkOrderDetailPageProps = {
   params: Promise<{
     id: string;
@@ -173,6 +175,22 @@ export default async function WorkOrderDetailPage({
               </dd>
             </div>
           </dl>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Cambiar estado</CardTitle>
+          <CardDescription>
+            Actualiza el estado actual y registra el movimiento en el historial.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <WorkOrderStatusForm
+            workOrderId={workOrder.id}
+            currentStatus={workOrder.status}
+            statusLabels={statusLabels}
+          />
         </CardContent>
       </Card>
 

@@ -5,6 +5,7 @@ import type {
 } from "../../../apps/web/generated/prisma/client";
 
 import type {
+  ChangeWorkOrderStatusInput,
   CreateWorkOrderInput,
   DeleteWorkOrderInput,
   UpdateWorkOrderInput,
@@ -19,6 +20,7 @@ export type WorkOrderId = WorkOrder["id"];
 export type WorkOrderStatusHistoryId = WorkOrderStatusHistory["id"];
 
 export type {
+  ChangeWorkOrderStatusInput,
   CreateWorkOrderInput,
   DeleteWorkOrderInput,
   UpdateWorkOrderInput,

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const workOrderStatuses = [
+export const workOrderStatuses = [
   "DRAFT",
   "RECEIVED",
   "DIAGNOSIS_IN_PROGRESS",
@@ -69,6 +69,13 @@ export const deleteWorkOrderSchema = z
   })
   .strict();
 
+export const changeWorkOrderStatusSchema = z
+  .object({
+    id: workOrderIdSchema,
+    status: workOrderStatusSchema,
+  })
+  .strict();
+
 export const workOrderListQuerySchema = z
   .object({
     vehicleId: z.string().uuid("El vehículo no es válido.").optional(),
@@ -84,4 +91,7 @@ export type WorkOrderStatusInput = z.infer<typeof workOrderStatusSchema>;
 export type CreateWorkOrderInput = z.infer<typeof createWorkOrderSchema>;
 export type UpdateWorkOrderInput = z.infer<typeof updateWorkOrderSchema>;
 export type DeleteWorkOrderInput = z.infer<typeof deleteWorkOrderSchema>;
+export type ChangeWorkOrderStatusInput = z.infer<
+  typeof changeWorkOrderStatusSchema
+>;
 export type WorkOrderListQueryInput = z.infer<typeof workOrderListQuerySchema>;
