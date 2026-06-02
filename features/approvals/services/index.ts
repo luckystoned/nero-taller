@@ -1,7 +1,19 @@
-import { ApprovalStatus } from "../../../apps/web/generated/prisma/client";
+import {
+  ApprovalStatus,
+  QuoteStatus,
+  WorkOrderStatus,
+} from "../../../apps/web/generated/prisma/client";
 import { prisma } from "../../../apps/web/lib/prisma";
 
 import type { CreateApprovalInput, RespondApprovalInput } from "../schemas";
+
+type ApprovalWorkflowTarget = {
+  approvalStatus: typeof ApprovalStatus.APPROVED | typeof ApprovalStatus.REJECTED;
+  quoteStatus: typeof QuoteStatus.APPROVED | typeof QuoteStatus.REJECTED;
+  workOrderStatus:
+    | typeof WorkOrderStatus.APPROVED
+    | typeof WorkOrderStatus.QUOTE_PENDING;
+};
 
 async function assertQuoteExists(quoteId: string) {
   const quoteExists = await prisma.quote.count({
@@ -35,48 +47,93 @@ export async function createApproval(input: CreateApprovalInput) {
   });
 }
 
-export async function approveApproval(input: RespondApprovalInput) {
-  const currentApproval = await prisma.approval.findUnique({
-    where: { id: input.id },
+async function respondApproval(
+  input: RespondApprovalInput,
+  target: ApprovalWorkflowTarget,
+) {
+  return prisma.$transaction(async (transaction) => {
+    const currentApproval = await transaction.approval.findUnique({
+      where: { id: input.id },
+      include: {
+        quote: {
+          include: {
+            workOrder: true,
+          },
+        },
+      },
+    });
+
+    if (!currentApproval) {
+      throw new Error("La aprobación indicada no existe.");
+    }
+
+    if (currentApproval.status !== ApprovalStatus.PENDING) {
+      throw new Error("La aprobación ya fue respondida.");
+    }
+
+    const respondedAt = new Date();
+    const approvalUpdate = await transaction.approval.updateMany({
+      where: {
+        id: input.id,
+        status: ApprovalStatus.PENDING,
+      },
+      data: {
+        status: target.approvalStatus,
+        respondedAt,
+        responseNotes: input.responseNotes,
+      },
+    });
+
+    if (approvalUpdate.count === 0) {
+      throw new Error("La aprobación ya fue respondida.");
+    }
+
+    const approval = await transaction.approval.findUniqueOrThrow({
+      where: { id: input.id },
+    });
+
+    await transaction.quote.update({
+      where: { id: currentApproval.quoteId },
+      data: {
+        status: target.quoteStatus,
+      },
+    });
+
+    const previousWorkOrderStatus = currentApproval.quote.workOrder.status;
+
+    if (previousWorkOrderStatus !== target.workOrderStatus) {
+      await transaction.workOrder.update({
+        where: { id: currentApproval.quote.workOrderId },
+        data: {
+          status: target.workOrderStatus,
+        },
+      });
+
+      await transaction.workOrderStatusHistory.create({
+        data: {
+          workOrderId: currentApproval.quote.workOrderId,
+          fromStatus: previousWorkOrderStatus,
+          toStatus: target.workOrderStatus,
+        },
+      });
+    }
+
+    return approval;
   });
+}
 
-  if (!currentApproval) {
-    throw new Error("La aprobación indicada no existe.");
-  }
-
-  if (currentApproval.status !== ApprovalStatus.PENDING) {
-    throw new Error("La aprobación ya fue respondida.");
-  }
-
-  return prisma.approval.update({
-    where: { id: input.id },
-    data: {
-      status: ApprovalStatus.APPROVED,
-      respondedAt: new Date(),
-      responseNotes: input.responseNotes,
-    },
+export async function approveApproval(input: RespondApprovalInput) {
+  return respondApproval(input, {
+    approvalStatus: ApprovalStatus.APPROVED,
+    quoteStatus: QuoteStatus.APPROVED,
+    workOrderStatus: WorkOrderStatus.APPROVED,
   });
 }
 
 export async function rejectApproval(input: RespondApprovalInput) {
-  const currentApproval = await prisma.approval.findUnique({
-    where: { id: input.id },
-  });
-
-  if (!currentApproval) {
-    throw new Error("La aprobación indicada no existe.");
-  }
-
-  if (currentApproval.status !== ApprovalStatus.PENDING) {
-    throw new Error("La aprobación ya fue respondida.");
-  }
-
-  return prisma.approval.update({
-    where: { id: input.id },
-    data: {
-      status: ApprovalStatus.REJECTED,
-      respondedAt: new Date(),
-      responseNotes: input.responseNotes,
-    },
+  return respondApproval(input, {
+    approvalStatus: ApprovalStatus.REJECTED,
+    quoteStatus: QuoteStatus.REJECTED,
+    workOrderStatus: WorkOrderStatus.QUOTE_PENDING,
   });
 }

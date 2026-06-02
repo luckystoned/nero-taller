@@ -87,6 +87,9 @@ export async function approveApprovalAction(
     const approval = await approveApproval(parsed.data);
     revalidatePath("/approvals");
     revalidatePath(`/approvals/${approval.id}`);
+    revalidatePath("/quotes");
+    revalidatePath(`/quotes/${approval.quoteId}`);
+    revalidatePath("/work-orders");
 
     return { success: true, approval: serializeApproval(approval) };
   } catch (error) {
@@ -117,6 +120,9 @@ export async function rejectApprovalAction(
     const approval = await rejectApproval(parsed.data);
     revalidatePath("/approvals");
     revalidatePath(`/approvals/${approval.id}`);
+    revalidatePath("/quotes");
+    revalidatePath(`/quotes/${approval.quoteId}`);
+    revalidatePath("/work-orders");
 
     return { success: true, approval: serializeApproval(approval) };
   } catch (error) {
