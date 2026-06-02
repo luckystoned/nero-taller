@@ -58,7 +58,8 @@ export const ModelName = {
   WorkOrderStatusHistory: 'WorkOrderStatusHistory',
   Quote: 'Quote',
   QuoteItem: 'QuoteItem',
-  Approval: 'Approval'
+  Approval: 'Approval',
+  Supplier: 'Supplier'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -190,6 +191,21 @@ export const ApprovalScalarFieldEnum = {
 } as const
 
 export type ApprovalScalarFieldEnum = (typeof ApprovalScalarFieldEnum)[keyof typeof ApprovalScalarFieldEnum]
+
+
+export const SupplierScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  taxId: 'taxId',
+  address: 'address',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SupplierScalarFieldEnum = (typeof SupplierScalarFieldEnum)[keyof typeof SupplierScalarFieldEnum]
 
 
 export const SortOrder = {

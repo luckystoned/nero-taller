@@ -81,3 +81,8 @@ export type QuoteItem = Prisma.QuoteItemModel
  * 
  */
 export type Approval = Prisma.ApprovalModel
+/**
+ * Model Supplier
+ * 
+ */
+export type Supplier = Prisma.SupplierModel
