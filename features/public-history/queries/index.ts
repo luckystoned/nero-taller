@@ -27,8 +27,8 @@ const publicSafeHistoryInclude = {
       year: true,
       workOrders: {
         select: {
-          id: true,
           status: true,
+          intakeReason: true,
           createdAt: true,
           updatedAt: true,
         },
@@ -81,7 +81,6 @@ export async function getSafePublicVehicleHistoryByToken(publicToken: string) {
   const publicHistory = await prisma.publicVehicleHistory.findUnique({
     where: {
       publicToken: parsedToken,
-      isEnabled: true,
     },
     include: publicSafeHistoryInclude,
   });
@@ -90,11 +89,14 @@ export async function getSafePublicVehicleHistoryByToken(publicToken: string) {
     return null;
   }
 
-  const { vehicle, ...history } = publicHistory;
+  const { vehicle } = publicHistory;
   const { workOrders, ...vehicleSummary } = vehicle;
 
   return {
-    ...history,
+    publicToken: publicHistory.publicToken,
+    isEnabled: publicHistory.isEnabled,
+    createdAt: publicHistory.createdAt,
+    updatedAt: publicHistory.updatedAt,
     vehicle: vehicleSummary,
     workOrders,
   };

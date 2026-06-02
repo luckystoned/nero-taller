@@ -20,8 +20,8 @@ export type PublicVehicleHistoryVehicleSummary = {
 };
 
 export type PublicVehicleHistoryWorkOrderSummary = {
-  id: string;
   status: PrismaWorkOrderStatus;
+  intakeReason: string;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -31,7 +31,6 @@ export type PublicVehicleHistoryDTO = PublicVehicleHistory & {
 };
 
 export type PublicVehicleHistorySafeDTO = {
-  id: string;
   publicToken: string;
   isEnabled: boolean;
   createdAt: Date;
