@@ -17,6 +17,8 @@ import { cn } from "@/lib/utils";
 import { getVehicleById } from "../../../../../../features/vehicles/queries";
 import { vehicleIdSchema } from "../../../../../../features/vehicles/schemas";
 
+import { PublicHistoryControls } from "../_components/public-history-controls";
+
 type VehicleDetailPageProps = {
   params: Promise<{
     id: string;
@@ -183,6 +185,22 @@ export default async function VehicleDetailPage({
               </dd>
             </div>
           </dl>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Historial público</CardTitle>
+          <CardDescription>
+            Gestión interna del token para el futuro historial público del
+            vehículo.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <PublicHistoryControls
+            vehicleId={vehicle.id}
+            publicHistory={vehicle.publicHistory}
+          />
         </CardContent>
       </Card>
     </div>

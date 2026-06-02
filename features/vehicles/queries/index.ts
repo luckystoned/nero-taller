@@ -9,6 +9,7 @@ import {
 const vehicleOwnerInclude = {
   customer: true,
   company: true,
+  publicHistory: true,
 } as const;
 
 export async function getVehicleById(id: string) {
