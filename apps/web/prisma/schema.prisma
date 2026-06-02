@@ -58,6 +58,7 @@ model Vehicle {
   customer   Customer? @relation(fields: [customerId], references: [id], onDelete: Restrict)
   company    Company?  @relation(fields: [companyId], references: [id], onDelete: Restrict)
   workOrders WorkOrder[]
+  publicHistory PublicVehicleHistory?
 
   @@unique([plate])
   @@unique([vin])
@@ -219,4 +220,17 @@ model Part {
   @@unique([sku])
   @@index([supplierId])
   @@map("parts")
+}
+
+model PublicVehicleHistory {
+  id          String   @id @default(uuid()) @db.Uuid
+  vehicleId   String   @unique @map("vehicle_id") @db.Uuid
+  publicToken String   @unique @map("public_token")
+  isEnabled   Boolean  @default(true) @map("is_enabled")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([isEnabled])
+  @@map("public_vehicle_histories")
 }

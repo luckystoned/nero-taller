@@ -91,3 +91,8 @@ export type Supplier = Prisma.SupplierModel
  * 
  */
 export type Part = Prisma.PartModel
+/**
+ * Model PublicVehicleHistory
+ * 
+ */
+export type PublicVehicleHistory = Prisma.PublicVehicleHistoryModel

@@ -393,7 +393,8 @@ export const ModelName = {
   QuoteItem: 'QuoteItem',
   Approval: 'Approval',
   Supplier: 'Supplier',
-  Part: 'Part'
+  Part: 'Part',
+  PublicVehicleHistory: 'PublicVehicleHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "workOrderStatusHistory" | "quote" | "quoteItem" | "approval" | "supplier" | "part"
+    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "workOrderStatusHistory" | "quote" | "quoteItem" | "approval" | "supplier" | "part" | "publicVehicleHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1153,6 +1154,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PublicVehicleHistory: {
+      payload: Prisma.$PublicVehicleHistoryPayload<ExtArgs>
+      fields: Prisma.PublicVehicleHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PublicVehicleHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PublicVehicleHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.PublicVehicleHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PublicVehicleHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.PublicVehicleHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.PublicVehicleHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.PublicVehicleHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PublicVehicleHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.PublicVehicleHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>
+        }
+        update: {
+          args: Prisma.PublicVehicleHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.PublicVehicleHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PublicVehicleHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PublicVehicleHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.PublicVehicleHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PublicVehicleHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.PublicVehicleHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePublicVehicleHistory>
+        }
+        groupBy: {
+          args: Prisma.PublicVehicleHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PublicVehicleHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PublicVehicleHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PublicVehicleHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1337,6 +1412,18 @@ export const PartScalarFieldEnum = {
 } as const
 
 export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum]
+
+
+export const PublicVehicleHistoryScalarFieldEnum = {
+  id: 'id',
+  vehicleId: 'vehicleId',
+  publicToken: 'publicToken',
+  isEnabled: 'isEnabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PublicVehicleHistoryScalarFieldEnum = (typeof PublicVehicleHistoryScalarFieldEnum)[keyof typeof PublicVehicleHistoryScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1621,6 +1708,7 @@ export type GlobalOmitConfig = {
   approval?: Prisma.ApprovalOmit
   supplier?: Prisma.SupplierOmit
   part?: Prisma.PartOmit
+  publicVehicleHistory?: Prisma.PublicVehicleHistoryOmit
 }
 
 /* Types for Logging */

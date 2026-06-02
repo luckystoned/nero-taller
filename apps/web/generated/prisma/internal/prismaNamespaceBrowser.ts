@@ -60,7 +60,8 @@ export const ModelName = {
   QuoteItem: 'QuoteItem',
   Approval: 'Approval',
   Supplier: 'Supplier',
-  Part: 'Part'
+  Part: 'Part',
+  PublicVehicleHistory: 'PublicVehicleHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -224,6 +225,18 @@ export const PartScalarFieldEnum = {
 } as const
 
 export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum]
+
+
+export const PublicVehicleHistoryScalarFieldEnum = {
+  id: 'id',
+  vehicleId: 'vehicleId',
+  publicToken: 'publicToken',
+  isEnabled: 'isEnabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PublicVehicleHistoryScalarFieldEnum = (typeof PublicVehicleHistoryScalarFieldEnum)[keyof typeof PublicVehicleHistoryScalarFieldEnum]
 
 
 export const SortOrder = {
