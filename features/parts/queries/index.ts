@@ -12,6 +12,9 @@ export async function getPartById(id: string) {
 
   const part = await prisma.part.findUnique({
     where: { id: partId },
+    include: {
+      supplier: true,
+    },
   });
 
   return part ? serializePart(part) : null;
@@ -22,6 +25,9 @@ export async function listParts(input?: PartListQueryInput) {
   const search = query?.search?.trim();
 
   const parts = await prisma.part.findMany({
+    include: {
+      supplier: true,
+    },
     where: {
       supplierId: query?.supplierId,
       ...(search
