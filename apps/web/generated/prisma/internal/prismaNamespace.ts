@@ -392,7 +392,8 @@ export const ModelName = {
   Quote: 'Quote',
   QuoteItem: 'QuoteItem',
   Approval: 'Approval',
-  Supplier: 'Supplier'
+  Supplier: 'Supplier',
+  Part: 'Part'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "workOrderStatusHistory" | "quote" | "quoteItem" | "approval" | "supplier"
+    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "workOrderStatusHistory" | "quote" | "quoteItem" | "approval" | "supplier" | "part"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1078,6 +1079,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Part: {
+      payload: Prisma.$PartPayload<ExtArgs>
+      fields: Prisma.PartFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PartFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PartFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>
+        }
+        findFirst: {
+          args: Prisma.PartFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PartFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>
+        }
+        findMany: {
+          args: Prisma.PartFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>[]
+        }
+        create: {
+          args: Prisma.PartCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>
+        }
+        createMany: {
+          args: Prisma.PartCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PartCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>[]
+        }
+        delete: {
+          args: Prisma.PartDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>
+        }
+        update: {
+          args: Prisma.PartUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>
+        }
+        deleteMany: {
+          args: Prisma.PartDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PartUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PartUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>[]
+        }
+        upsert: {
+          args: Prisma.PartUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PartPayload>
+        }
+        aggregate: {
+          args: Prisma.PartAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePart>
+        }
+        groupBy: {
+          args: Prisma.PartGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PartGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PartCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PartCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1245,6 +1320,23 @@ export const SupplierScalarFieldEnum = {
 } as const
 
 export type SupplierScalarFieldEnum = (typeof SupplierScalarFieldEnum)[keyof typeof SupplierScalarFieldEnum]
+
+
+export const PartScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sku: 'sku',
+  description: 'description',
+  brand: 'brand',
+  unitCost: 'unitCost',
+  salePrice: 'salePrice',
+  stock: 'stock',
+  supplierId: 'supplierId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1528,6 +1620,7 @@ export type GlobalOmitConfig = {
   quoteItem?: Prisma.QuoteItemOmit
   approval?: Prisma.ApprovalOmit
   supplier?: Prisma.SupplierOmit
+  part?: Prisma.PartOmit
 }
 
 /* Types for Logging */

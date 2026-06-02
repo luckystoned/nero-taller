@@ -86,3 +86,8 @@ export type Approval = Prisma.ApprovalModel
  * 
  */
 export type Supplier = Prisma.SupplierModel
+/**
+ * Model Part
+ * 
+ */
+export type Part = Prisma.PartModel

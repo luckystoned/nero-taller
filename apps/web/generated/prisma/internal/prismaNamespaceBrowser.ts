@@ -59,7 +59,8 @@ export const ModelName = {
   Quote: 'Quote',
   QuoteItem: 'QuoteItem',
   Approval: 'Approval',
-  Supplier: 'Supplier'
+  Supplier: 'Supplier',
+  Part: 'Part'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -206,6 +207,23 @@ export const SupplierScalarFieldEnum = {
 } as const
 
 export type SupplierScalarFieldEnum = (typeof SupplierScalarFieldEnum)[keyof typeof SupplierScalarFieldEnum]
+
+
+export const PartScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sku: 'sku',
+  description: 'description',
+  brand: 'brand',
+  unitCost: 'unitCost',
+  salePrice: 'salePrice',
+  stock: 'stock',
+  supplierId: 'supplierId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum]
 
 
 export const SortOrder = {
