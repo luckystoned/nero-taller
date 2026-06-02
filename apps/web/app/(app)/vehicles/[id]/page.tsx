@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -66,6 +67,23 @@ function formatOwnerType(vehicle: VehicleWithOwner) {
   return "Sin cargar";
 }
 
+function buildPublicHistoryUrl(publicToken: string, requestHeaders: Headers) {
+  const host =
+    requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
+
+  if (!host) {
+    return `/public-history/${publicToken}`;
+  }
+
+  const protocol =
+    requestHeaders.get("x-forwarded-proto") ??
+    (host.startsWith("localhost") || host.startsWith("127.")
+      ? "http"
+      : "https");
+
+  return `${protocol}://${host}/public-history/${publicToken}`;
+}
+
 export default async function VehicleDetailPage({
   params,
 }: VehicleDetailPageProps) {
@@ -81,6 +99,11 @@ export default async function VehicleDetailPage({
   if (!vehicle) {
     notFound();
   }
+
+  const requestHeaders = await headers();
+  const publicUrl = vehicle.publicHistory
+    ? buildPublicHistoryUrl(vehicle.publicHistory.publicToken, requestHeaders)
+    : null;
 
   return (
     <div className="flex flex-col gap-4">
@@ -192,7 +215,7 @@ export default async function VehicleDetailPage({
         <CardHeader>
           <CardTitle>Historial público</CardTitle>
           <CardDescription>
-            Gestión interna del token para el futuro historial público del
+            Gestión interna del QR y el acceso público al historial del
             vehículo.
           </CardDescription>
         </CardHeader>
@@ -200,6 +223,7 @@ export default async function VehicleDetailPage({
           <PublicHistoryControls
             vehicleId={vehicle.id}
             publicHistory={vehicle.publicHistory}
+            publicUrl={publicUrl}
           />
         </CardContent>
       </Card>

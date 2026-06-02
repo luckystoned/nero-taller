@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "prettier": "^3.7.4"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
   }
 }
