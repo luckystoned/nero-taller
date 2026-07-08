@@ -1,4 +1,7 @@
-import { WorkOrderStatus } from "../../../apps/web/generated/prisma/client";
+import {
+  AppointmentStatus,
+  WorkOrderStatus,
+} from "../../../apps/web/generated/prisma/client";
 import { prisma } from "../../../apps/web/lib/prisma";
 
 import type {
@@ -15,6 +18,24 @@ async function assertVehicleExists(vehicleId: string) {
 
   if (!vehicleExists) {
     throw new Error("El vehículo indicado no existe.");
+  }
+}
+
+function getAppointmentStatusForWorkOrderStatus(status: WorkOrderStatus) {
+  switch (status) {
+    case WorkOrderStatus.IN_PROGRESS:
+      return AppointmentStatus.IN_PROGRESS;
+    case WorkOrderStatus.WAITING_PARTS:
+      return AppointmentStatus.WAITING_PARTS;
+    case WorkOrderStatus.READY_FOR_PICKUP:
+      return AppointmentStatus.READY_FOR_PICKUP;
+    case WorkOrderStatus.COMPLETED:
+    case WorkOrderStatus.DELIVERED:
+      return AppointmentStatus.COMPLETED;
+    case WorkOrderStatus.CANCELLED:
+      return AppointmentStatus.CANCELLED;
+    default:
+      return null;
   }
 }
 
@@ -93,6 +114,32 @@ export async function changeWorkOrderStatus(input: ChangeWorkOrderStatusInput) {
         toStatus: input.status,
       },
     });
+
+    const appointmentStatus = getAppointmentStatusForWorkOrderStatus(
+      input.status,
+    );
+
+    if (appointmentStatus) {
+      await transaction.appointment.updateMany({
+        where: {
+          workOrderId: input.id,
+          status: {
+            notIn: [
+              AppointmentStatus.CANCELLED,
+              AppointmentStatus.COMPLETED,
+              AppointmentStatus.NO_SHOW,
+            ],
+          },
+        },
+        data: {
+          status: appointmentStatus,
+          cancellationReason:
+            appointmentStatus === AppointmentStatus.CANCELLED
+              ? "Orden de trabajo cancelada."
+              : undefined,
+        },
+      });
+    }
 
     return updatedWorkOrder;
   });

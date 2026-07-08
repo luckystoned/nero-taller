@@ -62,6 +62,16 @@ export type Vehicle = Prisma.VehicleModel
  */
 export type WorkOrder = Prisma.WorkOrderModel
 /**
+ * Model Appointment
+ * 
+ */
+export type Appointment = Prisma.AppointmentModel
+/**
+ * Model WorkshopScheduleSettings
+ * 
+ */
+export type WorkshopScheduleSettings = Prisma.WorkshopScheduleSettingsModel
+/**
  * Model WorkOrderStatusHistory
  * 
  */

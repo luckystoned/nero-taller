@@ -388,6 +388,8 @@ export const ModelName = {
   Company: 'Company',
   Vehicle: 'Vehicle',
   WorkOrder: 'WorkOrder',
+  Appointment: 'Appointment',
+  WorkshopScheduleSettings: 'WorkshopScheduleSettings',
   WorkOrderStatusHistory: 'WorkOrderStatusHistory',
   Quote: 'Quote',
   QuoteItem: 'QuoteItem',
@@ -410,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "workOrderStatusHistory" | "quote" | "quoteItem" | "approval" | "supplier" | "part" | "publicVehicleHistory"
+    modelProps: "customer" | "company" | "vehicle" | "workOrder" | "appointment" | "workshopScheduleSettings" | "workOrderStatusHistory" | "quote" | "quoteItem" | "approval" | "supplier" | "part" | "publicVehicleHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -707,6 +709,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.WorkOrderCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.WorkOrderCountAggregateOutputType> | number
+        }
+      }
+    }
+    Appointment: {
+      payload: Prisma.$AppointmentPayload<ExtArgs>
+      fields: Prisma.AppointmentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AppointmentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AppointmentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>
+        }
+        findFirst: {
+          args: Prisma.AppointmentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AppointmentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>
+        }
+        findMany: {
+          args: Prisma.AppointmentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>[]
+        }
+        create: {
+          args: Prisma.AppointmentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>
+        }
+        createMany: {
+          args: Prisma.AppointmentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AppointmentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>[]
+        }
+        delete: {
+          args: Prisma.AppointmentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>
+        }
+        update: {
+          args: Prisma.AppointmentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>
+        }
+        deleteMany: {
+          args: Prisma.AppointmentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AppointmentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AppointmentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>[]
+        }
+        upsert: {
+          args: Prisma.AppointmentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentPayload>
+        }
+        aggregate: {
+          args: Prisma.AppointmentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAppointment>
+        }
+        groupBy: {
+          args: Prisma.AppointmentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppointmentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AppointmentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppointmentCountAggregateOutputType> | number
+        }
+      }
+    }
+    WorkshopScheduleSettings: {
+      payload: Prisma.$WorkshopScheduleSettingsPayload<ExtArgs>
+      fields: Prisma.WorkshopScheduleSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WorkshopScheduleSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WorkshopScheduleSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.WorkshopScheduleSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WorkshopScheduleSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.WorkshopScheduleSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.WorkshopScheduleSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.WorkshopScheduleSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WorkshopScheduleSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.WorkshopScheduleSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>
+        }
+        update: {
+          args: Prisma.WorkshopScheduleSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.WorkshopScheduleSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WorkshopScheduleSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WorkshopScheduleSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.WorkshopScheduleSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopScheduleSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.WorkshopScheduleSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWorkshopScheduleSettings>
+        }
+        groupBy: {
+          args: Prisma.WorkshopScheduleSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkshopScheduleSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WorkshopScheduleSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkshopScheduleSettingsCountAggregateOutputType> | number
         }
       }
     }
@@ -1328,6 +1478,51 @@ export const WorkOrderScalarFieldEnum = {
 export type WorkOrderScalarFieldEnum = (typeof WorkOrderScalarFieldEnum)[keyof typeof WorkOrderScalarFieldEnum]
 
 
+export const AppointmentScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  companyId: 'companyId',
+  vehicleId: 'vehicleId',
+  workOrderId: 'workOrderId',
+  title: 'title',
+  description: 'description',
+  serviceType: 'serviceType',
+  status: 'status',
+  priority: 'priority',
+  scheduledStartAt: 'scheduledStartAt',
+  scheduledEndAt: 'scheduledEndAt',
+  estimatedDropoffAt: 'estimatedDropoffAt',
+  estimatedPickupAt: 'estimatedPickupAt',
+  estimatedDurationMinutes: 'estimatedDurationMinutes',
+  internalNotes: 'internalNotes',
+  cancellationReason: 'cancellationReason',
+  createdBy: 'createdBy',
+  source: 'source',
+  assistantContext: 'assistantContext',
+  reminderStatus: 'reminderStatus',
+  lastReminderAt: 'lastReminderAt',
+  nextReminderAt: 'nextReminderAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
+
+
+export const WorkshopScheduleSettingsScalarFieldEnum = {
+  id: 'id',
+  timezone: 'timezone',
+  workingHours: 'workingHours',
+  maxVehiclesPerDay: 'maxVehiclesPerDay',
+  maxAppointmentsPerDay: 'maxAppointmentsPerDay',
+  defaultSlotDurationMinutes: 'defaultSlotDurationMinutes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkshopScheduleSettingsScalarFieldEnum = (typeof WorkshopScheduleSettingsScalarFieldEnum)[keyof typeof WorkshopScheduleSettingsScalarFieldEnum]
+
+
 export const WorkOrderStatusHistoryScalarFieldEnum = {
   id: 'id',
   workOrderId: 'workOrderId',
@@ -1434,6 +1629,21 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -1448,6 +1658,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1516,6 +1735,76 @@ export type EnumWorkOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$
  * Reference to a field of type 'WorkOrderStatus[]'
  */
 export type ListEnumWorkOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkOrderStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AppointmentStatus'
+ */
+export type EnumAppointmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AppointmentStatus[]'
+ */
+export type ListEnumAppointmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AppointmentPriority'
+ */
+export type EnumAppointmentPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentPriority'>
+    
+
+
+/**
+ * Reference to a field of type 'AppointmentPriority[]'
+ */
+export type ListEnumAppointmentPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentPriority[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AppointmentSource'
+ */
+export type EnumAppointmentSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentSource'>
+    
+
+
+/**
+ * Reference to a field of type 'AppointmentSource[]'
+ */
+export type ListEnumAppointmentSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentSource[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'AppointmentReminderStatus'
+ */
+export type EnumAppointmentReminderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentReminderStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AppointmentReminderStatus[]'
+ */
+export type ListEnumAppointmentReminderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentReminderStatus[]'>
     
 
 
@@ -1702,6 +1991,8 @@ export type GlobalOmitConfig = {
   company?: Prisma.CompanyOmit
   vehicle?: Prisma.VehicleOmit
   workOrder?: Prisma.WorkOrderOmit
+  appointment?: Prisma.AppointmentOmit
+  workshopScheduleSettings?: Prisma.WorkshopScheduleSettingsOmit
   workOrderStatusHistory?: Prisma.WorkOrderStatusHistoryOmit
   quote?: Prisma.QuoteOmit
   quoteItem?: Prisma.QuoteItemOmit

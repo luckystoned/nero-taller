@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   Bot,
   Building2,
+  CalendarDays,
   Car,
   ClipboardCheck,
   FileText,
@@ -20,6 +21,7 @@ import { cn } from "@/lib/utils";
 
 const navigationItems = [
   { href: "/dashboard", label: "Panel", icon: Gauge },
+  { href: "/appointments", label: "Turnos", icon: CalendarDays },
   { href: "/customers", label: "Clientes", icon: Users },
   { href: "/companies", label: "Empresas", icon: Building2 },
   { href: "/vehicles", label: "Vehículos", icon: Car },

@@ -28,6 +28,51 @@ export const WorkOrderStatus = {
 export type WorkOrderStatus = (typeof WorkOrderStatus)[keyof typeof WorkOrderStatus]
 
 
+export const AppointmentStatus = {
+  REQUESTED: 'REQUESTED',
+  CONFIRMED: 'CONFIRMED',
+  CHECKED_IN: 'CHECKED_IN',
+  IN_PROGRESS: 'IN_PROGRESS',
+  WAITING_PARTS: 'WAITING_PARTS',
+  READY_FOR_PICKUP: 'READY_FOR_PICKUP',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED',
+  NO_SHOW: 'NO_SHOW'
+} as const
+
+export type AppointmentStatus = (typeof AppointmentStatus)[keyof typeof AppointmentStatus]
+
+
+export const AppointmentPriority = {
+  LOW: 'LOW',
+  NORMAL: 'NORMAL',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+} as const
+
+export type AppointmentPriority = (typeof AppointmentPriority)[keyof typeof AppointmentPriority]
+
+
+export const AppointmentSource = {
+  MANUAL: 'MANUAL',
+  ASSISTANT: 'ASSISTANT',
+  WHATSAPP: 'WHATSAPP'
+} as const
+
+export type AppointmentSource = (typeof AppointmentSource)[keyof typeof AppointmentSource]
+
+
+export const AppointmentReminderStatus = {
+  NOT_SCHEDULED: 'NOT_SCHEDULED',
+  SCHEDULED: 'SCHEDULED',
+  SENT: 'SENT',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type AppointmentReminderStatus = (typeof AppointmentReminderStatus)[keyof typeof AppointmentReminderStatus]
+
+
 export const QuoteStatus = {
   DRAFT: 'DRAFT',
   SENT: 'SENT',

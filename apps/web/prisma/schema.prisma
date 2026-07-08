@@ -18,6 +18,7 @@ model Customer {
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
   vehicles   Vehicle[]
+  appointments Appointment[]
 
   @@index([phone])
   @@index([email])
@@ -36,6 +37,7 @@ model Company {
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
   vehicles         Vehicle[]
+  appointments     Appointment[]
 
   @@index([email])
   @@index([phone])
@@ -58,6 +60,7 @@ model Vehicle {
   customer   Customer? @relation(fields: [customerId], references: [id], onDelete: Restrict)
   company    Company?  @relation(fields: [companyId], references: [id], onDelete: Restrict)
   workOrders WorkOrder[]
+  appointments Appointment[]
   publicHistory PublicVehicleHistory?
 
   @@unique([plate])
@@ -95,10 +98,98 @@ model WorkOrder {
   vehicle       Vehicle                  @relation(fields: [vehicleId], references: [id], onDelete: Restrict)
   statusHistory WorkOrderStatusHistory[]
   quotes        Quote[]
+  appointments  Appointment[]
 
   @@index([vehicleId])
   @@index([status])
   @@map("work_orders")
+}
+
+enum AppointmentStatus {
+  REQUESTED
+  CONFIRMED
+  CHECKED_IN
+  IN_PROGRESS
+  WAITING_PARTS
+  READY_FOR_PICKUP
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum AppointmentPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+enum AppointmentSource {
+  MANUAL
+  ASSISTANT
+  WHATSAPP
+}
+
+enum AppointmentReminderStatus {
+  NOT_SCHEDULED
+  SCHEDULED
+  SENT
+  FAILED
+  CANCELLED
+}
+
+model Appointment {
+  id                       String                    @id @default(uuid()) @db.Uuid
+  customerId               String?                   @map("customer_id") @db.Uuid
+  companyId                String?                   @map("company_id") @db.Uuid
+  vehicleId                String                    @map("vehicle_id") @db.Uuid
+  workOrderId              String?                   @map("work_order_id") @db.Uuid
+  title                    String
+  description              String?
+  serviceType              String?                   @map("service_type")
+  status                   AppointmentStatus         @default(REQUESTED)
+  priority                 AppointmentPriority       @default(NORMAL)
+  scheduledStartAt         DateTime                  @map("scheduled_start_at")
+  scheduledEndAt           DateTime                  @map("scheduled_end_at")
+  estimatedDropoffAt       DateTime?                 @map("estimated_dropoff_at")
+  estimatedPickupAt        DateTime?                 @map("estimated_pickup_at")
+  estimatedDurationMinutes Int?                      @map("estimated_duration_minutes")
+  internalNotes            String?                   @map("internal_notes")
+  cancellationReason       String?                   @map("cancellation_reason")
+  createdBy                String?                   @map("created_by") @db.Uuid
+  source                   AppointmentSource         @default(MANUAL)
+  assistantContext         Json?                     @map("assistant_context")
+  reminderStatus           AppointmentReminderStatus @default(NOT_SCHEDULED) @map("reminder_status")
+  lastReminderAt           DateTime?                 @map("last_reminder_at")
+  nextReminderAt           DateTime?                 @map("next_reminder_at")
+  createdAt                DateTime                  @default(now()) @map("created_at")
+  updatedAt                DateTime                  @updatedAt @map("updated_at")
+  customer                 Customer?                 @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  company                  Company?                  @relation(fields: [companyId], references: [id], onDelete: Restrict)
+  vehicle                  Vehicle                   @relation(fields: [vehicleId], references: [id], onDelete: Restrict)
+  workOrder                WorkOrder?                @relation(fields: [workOrderId], references: [id], onDelete: SetNull)
+
+  @@index([scheduledStartAt, scheduledEndAt])
+  @@index([status])
+  @@index([vehicleId])
+  @@index([customerId])
+  @@index([companyId])
+  @@index([workOrderId])
+  @@index([serviceType])
+  @@map("appointments")
+}
+
+model WorkshopScheduleSettings {
+  id                         String   @id @default(uuid()) @db.Uuid
+  timezone                   String   @default("America/Argentina/Buenos_Aires")
+  workingHours               Json     @map("working_hours")
+  maxVehiclesPerDay          Int      @map("max_vehicles_per_day")
+  maxAppointmentsPerDay      Int      @map("max_appointments_per_day")
+  defaultSlotDurationMinutes Int      @map("default_slot_duration_minutes")
+  createdAt                  DateTime @default(now()) @map("created_at")
+  updatedAt                  DateTime @updatedAt @map("updated_at")
+
+  @@map("workshop_schedule_settings")
 }
 
 model WorkOrderStatusHistory {

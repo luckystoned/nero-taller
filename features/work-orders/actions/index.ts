@@ -153,6 +153,7 @@ export async function changeWorkOrderStatusAction(
     const workOrder = await changeWorkOrderStatus(parsed.data);
     revalidatePath("/work-orders");
     revalidatePath(`/work-orders/${workOrder.id}`);
+    revalidatePath("/appointments");
 
     return { success: true, workOrder };
   } catch (error) {

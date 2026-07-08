@@ -55,6 +55,8 @@ export const ModelName = {
   Company: 'Company',
   Vehicle: 'Vehicle',
   WorkOrder: 'WorkOrder',
+  Appointment: 'Appointment',
+  WorkshopScheduleSettings: 'WorkshopScheduleSettings',
   WorkOrderStatusHistory: 'WorkOrderStatusHistory',
   Quote: 'Quote',
   QuoteItem: 'QuoteItem',
@@ -139,6 +141,51 @@ export const WorkOrderScalarFieldEnum = {
 } as const
 
 export type WorkOrderScalarFieldEnum = (typeof WorkOrderScalarFieldEnum)[keyof typeof WorkOrderScalarFieldEnum]
+
+
+export const AppointmentScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  companyId: 'companyId',
+  vehicleId: 'vehicleId',
+  workOrderId: 'workOrderId',
+  title: 'title',
+  description: 'description',
+  serviceType: 'serviceType',
+  status: 'status',
+  priority: 'priority',
+  scheduledStartAt: 'scheduledStartAt',
+  scheduledEndAt: 'scheduledEndAt',
+  estimatedDropoffAt: 'estimatedDropoffAt',
+  estimatedPickupAt: 'estimatedPickupAt',
+  estimatedDurationMinutes: 'estimatedDurationMinutes',
+  internalNotes: 'internalNotes',
+  cancellationReason: 'cancellationReason',
+  createdBy: 'createdBy',
+  source: 'source',
+  assistantContext: 'assistantContext',
+  reminderStatus: 'reminderStatus',
+  lastReminderAt: 'lastReminderAt',
+  nextReminderAt: 'nextReminderAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
+
+
+export const WorkshopScheduleSettingsScalarFieldEnum = {
+  id: 'id',
+  timezone: 'timezone',
+  workingHours: 'workingHours',
+  maxVehiclesPerDay: 'maxVehiclesPerDay',
+  maxAppointmentsPerDay: 'maxAppointmentsPerDay',
+  defaultSlotDurationMinutes: 'defaultSlotDurationMinutes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkshopScheduleSettingsScalarFieldEnum = (typeof WorkshopScheduleSettingsScalarFieldEnum)[keyof typeof WorkshopScheduleSettingsScalarFieldEnum]
 
 
 export const WorkOrderStatusHistoryScalarFieldEnum = {
@@ -247,6 +294,21 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -261,4 +323,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

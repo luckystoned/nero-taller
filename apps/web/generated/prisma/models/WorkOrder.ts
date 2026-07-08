@@ -243,6 +243,7 @@ export type WorkOrderWhereInput = {
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
   statusHistory?: Prisma.WorkOrderStatusHistoryListRelationFilter
   quotes?: Prisma.QuoteListRelationFilter
+  appointments?: Prisma.AppointmentListRelationFilter
 }
 
 export type WorkOrderOrderByWithRelationInput = {
@@ -257,6 +258,7 @@ export type WorkOrderOrderByWithRelationInput = {
   vehicle?: Prisma.VehicleOrderByWithRelationInput
   statusHistory?: Prisma.WorkOrderStatusHistoryOrderByRelationAggregateInput
   quotes?: Prisma.QuoteOrderByRelationAggregateInput
+  appointments?: Prisma.AppointmentOrderByRelationAggregateInput
 }
 
 export type WorkOrderWhereUniqueInput = Prisma.AtLeast<{
@@ -274,6 +276,7 @@ export type WorkOrderWhereUniqueInput = Prisma.AtLeast<{
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
   statusHistory?: Prisma.WorkOrderStatusHistoryListRelationFilter
   quotes?: Prisma.QuoteListRelationFilter
+  appointments?: Prisma.AppointmentListRelationFilter
 }, "id">
 
 export type WorkOrderOrderByWithAggregationInput = {
@@ -317,6 +320,7 @@ export type WorkOrderCreateInput = {
   vehicle: Prisma.VehicleCreateNestedOneWithoutWorkOrdersInput
   statusHistory?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutWorkOrderInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutWorkOrderInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutWorkOrderInput
 }
 
 export type WorkOrderUncheckedCreateInput = {
@@ -330,6 +334,7 @@ export type WorkOrderUncheckedCreateInput = {
   updatedAt?: Date | string
   statusHistory?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutWorkOrderInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutWorkOrderInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutWorkOrderInput
 }
 
 export type WorkOrderUpdateInput = {
@@ -343,6 +348,7 @@ export type WorkOrderUpdateInput = {
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutWorkOrdersNestedInput
   statusHistory?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutWorkOrderNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutWorkOrderNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutWorkOrderNestedInput
 }
 
 export type WorkOrderUncheckedUpdateInput = {
@@ -356,6 +362,7 @@ export type WorkOrderUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   statusHistory?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutWorkOrderNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutWorkOrderNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutWorkOrderNestedInput
 }
 
 export type WorkOrderCreateManyInput = {
@@ -441,6 +448,11 @@ export type WorkOrderSumOrderByAggregateInput = {
   mileage?: Prisma.SortOrder
 }
 
+export type WorkOrderNullableScalarRelationFilter = {
+  is?: Prisma.WorkOrderWhereInput | null
+  isNot?: Prisma.WorkOrderWhereInput | null
+}
+
 export type WorkOrderScalarRelationFilter = {
   is?: Prisma.WorkOrderWhereInput
   isNot?: Prisma.WorkOrderWhereInput
@@ -492,6 +504,22 @@ export type EnumWorkOrderStatusFieldUpdateOperationsInput = {
   set?: $Enums.WorkOrderStatus
 }
 
+export type WorkOrderCreateNestedOneWithoutAppointmentsInput = {
+  create?: Prisma.XOR<Prisma.WorkOrderCreateWithoutAppointmentsInput, Prisma.WorkOrderUncheckedCreateWithoutAppointmentsInput>
+  connectOrCreate?: Prisma.WorkOrderCreateOrConnectWithoutAppointmentsInput
+  connect?: Prisma.WorkOrderWhereUniqueInput
+}
+
+export type WorkOrderUpdateOneWithoutAppointmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkOrderCreateWithoutAppointmentsInput, Prisma.WorkOrderUncheckedCreateWithoutAppointmentsInput>
+  connectOrCreate?: Prisma.WorkOrderCreateOrConnectWithoutAppointmentsInput
+  upsert?: Prisma.WorkOrderUpsertWithoutAppointmentsInput
+  disconnect?: Prisma.WorkOrderWhereInput | boolean
+  delete?: Prisma.WorkOrderWhereInput | boolean
+  connect?: Prisma.WorkOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkOrderUpdateToOneWithWhereWithoutAppointmentsInput, Prisma.WorkOrderUpdateWithoutAppointmentsInput>, Prisma.WorkOrderUncheckedUpdateWithoutAppointmentsInput>
+}
+
 export type WorkOrderCreateNestedOneWithoutStatusHistoryInput = {
   create?: Prisma.XOR<Prisma.WorkOrderCreateWithoutStatusHistoryInput, Prisma.WorkOrderUncheckedCreateWithoutStatusHistoryInput>
   connectOrCreate?: Prisma.WorkOrderCreateOrConnectWithoutStatusHistoryInput
@@ -530,6 +558,7 @@ export type WorkOrderCreateWithoutVehicleInput = {
   updatedAt?: Date | string
   statusHistory?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutWorkOrderInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutWorkOrderInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutWorkOrderInput
 }
 
 export type WorkOrderUncheckedCreateWithoutVehicleInput = {
@@ -542,6 +571,7 @@ export type WorkOrderUncheckedCreateWithoutVehicleInput = {
   updatedAt?: Date | string
   statusHistory?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutWorkOrderInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutWorkOrderInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutWorkOrderInput
 }
 
 export type WorkOrderCreateOrConnectWithoutVehicleInput = {
@@ -584,6 +614,74 @@ export type WorkOrderScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"WorkOrder"> | Date | string
 }
 
+export type WorkOrderCreateWithoutAppointmentsInput = {
+  id?: string
+  status: $Enums.WorkOrderStatus
+  intakeReason: string
+  symptoms?: string | null
+  mileage?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  vehicle: Prisma.VehicleCreateNestedOneWithoutWorkOrdersInput
+  statusHistory?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutWorkOrderInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutWorkOrderInput
+}
+
+export type WorkOrderUncheckedCreateWithoutAppointmentsInput = {
+  id?: string
+  vehicleId: string
+  status: $Enums.WorkOrderStatus
+  intakeReason: string
+  symptoms?: string | null
+  mileage?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  statusHistory?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutWorkOrderInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutWorkOrderInput
+}
+
+export type WorkOrderCreateOrConnectWithoutAppointmentsInput = {
+  where: Prisma.WorkOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkOrderCreateWithoutAppointmentsInput, Prisma.WorkOrderUncheckedCreateWithoutAppointmentsInput>
+}
+
+export type WorkOrderUpsertWithoutAppointmentsInput = {
+  update: Prisma.XOR<Prisma.WorkOrderUpdateWithoutAppointmentsInput, Prisma.WorkOrderUncheckedUpdateWithoutAppointmentsInput>
+  create: Prisma.XOR<Prisma.WorkOrderCreateWithoutAppointmentsInput, Prisma.WorkOrderUncheckedCreateWithoutAppointmentsInput>
+  where?: Prisma.WorkOrderWhereInput
+}
+
+export type WorkOrderUpdateToOneWithWhereWithoutAppointmentsInput = {
+  where?: Prisma.WorkOrderWhereInput
+  data: Prisma.XOR<Prisma.WorkOrderUpdateWithoutAppointmentsInput, Prisma.WorkOrderUncheckedUpdateWithoutAppointmentsInput>
+}
+
+export type WorkOrderUpdateWithoutAppointmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumWorkOrderStatusFieldUpdateOperationsInput | $Enums.WorkOrderStatus
+  intakeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  symptoms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mileage?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehicle?: Prisma.VehicleUpdateOneRequiredWithoutWorkOrdersNestedInput
+  statusHistory?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutWorkOrderNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutWorkOrderNestedInput
+}
+
+export type WorkOrderUncheckedUpdateWithoutAppointmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumWorkOrderStatusFieldUpdateOperationsInput | $Enums.WorkOrderStatus
+  intakeReason?: Prisma.StringFieldUpdateOperationsInput | string
+  symptoms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mileage?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  statusHistory?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutWorkOrderNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutWorkOrderNestedInput
+}
+
 export type WorkOrderCreateWithoutStatusHistoryInput = {
   id?: string
   status: $Enums.WorkOrderStatus
@@ -594,6 +692,7 @@ export type WorkOrderCreateWithoutStatusHistoryInput = {
   updatedAt?: Date | string
   vehicle: Prisma.VehicleCreateNestedOneWithoutWorkOrdersInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutWorkOrderInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutWorkOrderInput
 }
 
 export type WorkOrderUncheckedCreateWithoutStatusHistoryInput = {
@@ -606,6 +705,7 @@ export type WorkOrderUncheckedCreateWithoutStatusHistoryInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutWorkOrderInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutWorkOrderInput
 }
 
 export type WorkOrderCreateOrConnectWithoutStatusHistoryInput = {
@@ -634,6 +734,7 @@ export type WorkOrderUpdateWithoutStatusHistoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutWorkOrdersNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutWorkOrderNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutWorkOrderNestedInput
 }
 
 export type WorkOrderUncheckedUpdateWithoutStatusHistoryInput = {
@@ -646,6 +747,7 @@ export type WorkOrderUncheckedUpdateWithoutStatusHistoryInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutWorkOrderNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutWorkOrderNestedInput
 }
 
 export type WorkOrderCreateWithoutQuotesInput = {
@@ -658,6 +760,7 @@ export type WorkOrderCreateWithoutQuotesInput = {
   updatedAt?: Date | string
   vehicle: Prisma.VehicleCreateNestedOneWithoutWorkOrdersInput
   statusHistory?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutWorkOrderInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutWorkOrderInput
 }
 
 export type WorkOrderUncheckedCreateWithoutQuotesInput = {
@@ -670,6 +773,7 @@ export type WorkOrderUncheckedCreateWithoutQuotesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   statusHistory?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutWorkOrderInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutWorkOrderInput
 }
 
 export type WorkOrderCreateOrConnectWithoutQuotesInput = {
@@ -698,6 +802,7 @@ export type WorkOrderUpdateWithoutQuotesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutWorkOrdersNestedInput
   statusHistory?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutWorkOrderNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutWorkOrderNestedInput
 }
 
 export type WorkOrderUncheckedUpdateWithoutQuotesInput = {
@@ -710,6 +815,7 @@ export type WorkOrderUncheckedUpdateWithoutQuotesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   statusHistory?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutWorkOrderNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutWorkOrderNestedInput
 }
 
 export type WorkOrderCreateManyVehicleInput = {
@@ -732,6 +838,7 @@ export type WorkOrderUpdateWithoutVehicleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   statusHistory?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutWorkOrderNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutWorkOrderNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutWorkOrderNestedInput
 }
 
 export type WorkOrderUncheckedUpdateWithoutVehicleInput = {
@@ -744,6 +851,7 @@ export type WorkOrderUncheckedUpdateWithoutVehicleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   statusHistory?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutWorkOrderNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutWorkOrderNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutWorkOrderNestedInput
 }
 
 export type WorkOrderUncheckedUpdateManyWithoutVehicleInput = {
@@ -764,11 +872,13 @@ export type WorkOrderUncheckedUpdateManyWithoutVehicleInput = {
 export type WorkOrderCountOutputType = {
   statusHistory: number
   quotes: number
+  appointments: number
 }
 
 export type WorkOrderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   statusHistory?: boolean | WorkOrderCountOutputTypeCountStatusHistoryArgs
   quotes?: boolean | WorkOrderCountOutputTypeCountQuotesArgs
+  appointments?: boolean | WorkOrderCountOutputTypeCountAppointmentsArgs
 }
 
 /**
@@ -795,6 +905,13 @@ export type WorkOrderCountOutputTypeCountQuotesArgs<ExtArgs extends runtime.Type
   where?: Prisma.QuoteWhereInput
 }
 
+/**
+ * WorkOrderCountOutputType without action
+ */
+export type WorkOrderCountOutputTypeCountAppointmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppointmentWhereInput
+}
+
 
 export type WorkOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -808,6 +925,7 @@ export type WorkOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
   statusHistory?: boolean | Prisma.WorkOrder$statusHistoryArgs<ExtArgs>
   quotes?: boolean | Prisma.WorkOrder$quotesArgs<ExtArgs>
+  appointments?: boolean | Prisma.WorkOrder$appointmentsArgs<ExtArgs>
   _count?: boolean | Prisma.WorkOrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workOrder"]>
 
@@ -851,6 +969,7 @@ export type WorkOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
   statusHistory?: boolean | Prisma.WorkOrder$statusHistoryArgs<ExtArgs>
   quotes?: boolean | Prisma.WorkOrder$quotesArgs<ExtArgs>
+  appointments?: boolean | Prisma.WorkOrder$appointmentsArgs<ExtArgs>
   _count?: boolean | Prisma.WorkOrderCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WorkOrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -866,6 +985,7 @@ export type $WorkOrderPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     vehicle: Prisma.$VehiclePayload<ExtArgs>
     statusHistory: Prisma.$WorkOrderStatusHistoryPayload<ExtArgs>[]
     quotes: Prisma.$QuotePayload<ExtArgs>[]
+    appointments: Prisma.$AppointmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1273,6 +1393,7 @@ export interface Prisma__WorkOrderClient<T, Null = never, ExtArgs extends runtim
   vehicle<T extends Prisma.VehicleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VehicleDefaultArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   statusHistory<T extends Prisma.WorkOrder$statusHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkOrder$statusHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderStatusHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotes<T extends Prisma.WorkOrder$quotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkOrder$quotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  appointments<T extends Prisma.WorkOrder$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkOrder$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1756,6 +1877,30 @@ export type WorkOrder$quotesArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.QuoteScalarFieldEnum | Prisma.QuoteScalarFieldEnum[]
+}
+
+/**
+ * WorkOrder.appointments
+ */
+export type WorkOrder$appointmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Appointment
+   */
+  select?: Prisma.AppointmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Appointment
+   */
+  omit?: Prisma.AppointmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AppointmentInclude<ExtArgs> | null
+  where?: Prisma.AppointmentWhereInput
+  orderBy?: Prisma.AppointmentOrderByWithRelationInput | Prisma.AppointmentOrderByWithRelationInput[]
+  cursor?: Prisma.AppointmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AppointmentScalarFieldEnum | Prisma.AppointmentScalarFieldEnum[]
 }
 
 /**

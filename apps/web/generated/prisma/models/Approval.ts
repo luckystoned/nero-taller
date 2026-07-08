@@ -414,10 +414,6 @@ export type EnumApprovalStatusFieldUpdateOperationsInput = {
   set?: $Enums.ApprovalStatus
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type ApprovalCreateWithoutQuoteInput = {
   id?: string
   status?: $Enums.ApprovalStatus
